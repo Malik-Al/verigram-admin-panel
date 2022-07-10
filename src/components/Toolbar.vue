@@ -2,8 +2,8 @@
     <q-toolbar class="bg-secondary text-white shadow-2">
       <p class="text-h5">Verigram</p>
       <q-space />
-      <q-tabs class="customers">
-        <router-link to="/"  class="customers">
+      <q-tabs >
+        <router-link to="/" class="customers">
             <q-tab label="Клиенты" />
         </router-link>
         <router-link to="/logs" class="customers">
