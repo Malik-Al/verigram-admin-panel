@@ -1,6 +1,7 @@
 <template>
   <Toolbar/>
   <p class="text-h5">Cписок клиентов</p>
+
   <div class="q-pa-md">
     <div class="q-gutter-md" style="max-width: 300px">
       <q-input
@@ -28,6 +29,7 @@
 <script>
 import Toolbar from '@/components/Toolbar'
 import axios from 'axios'
+import config from '../../config.json'
 export default {
   name: 'TableComponent',
   components: {
@@ -41,14 +43,14 @@ export default {
   },
   methods: {
     async getAllStarWarsPeople() {
-      const res = await axios.get('http://localhost:3000/customers')
+      const res = await axios.get(config.api.customers)
       if (this.search) {
-        this.customers = res.data.filter(people =>
-        people.name.toLowerCase().includes(this.search.toLowerCase()) ||
-        people.second_name.toLowerCase().includes(this.search.toLowerCase()) ||
-        people.pin.toLowerCase().includes(this.search.toLowerCase()) ||
-        people.ref_id.toLowerCase().includes(this.search.toLowerCase()) ||
-        people.customer_id.toLowerCase().includes(this.search.toLowerCase())
+        this.customers = res.data.filter(data =>
+        data.name.toLowerCase().includes(this.search.toLowerCase()) ||
+        data.second_name.toLowerCase().includes(this.search.toLowerCase()) ||
+        data.pin.toLowerCase().includes(this.search.toLowerCase()) ||
+        data.ref_id.toLowerCase().includes(this.search.toLowerCase()) ||
+        data.customer_id.toLowerCase().includes(this.search.toLowerCase())
         );
       } else {
         this.customers = res.data;

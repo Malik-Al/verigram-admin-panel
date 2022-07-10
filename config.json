@@ -1,0 +1,6 @@
+{
+  "api": {
+    "customers": "http://localhost:3000/customers",
+    "logs": "http://localhost:3000/logs"
+  }
+}
