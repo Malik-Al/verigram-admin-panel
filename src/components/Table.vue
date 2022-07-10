@@ -1,4 +1,6 @@
 <template>
+  <Toolbar/>
+  <p class="text-h5">Cписок клиентов</p>
   <div class="q-pa-md">
     <div class="q-gutter-md" style="max-width: 300px">
       <q-input
@@ -18,14 +20,19 @@
         :key="customer"
         :rows="customer"
         row-key="name"
+        @row-click="eventOne"
     />
   </div>
 </template>
 
 <script>
+import Toolbar from '@/components/Toolbar'
 import axios from 'axios'
 export default {
   name: 'TableComponent',
+  components: {
+    Toolbar
+  },
   data () {
     return {
       customers: [],
@@ -46,6 +53,9 @@ export default {
       } else {
         this.customers = res.data;
       }
+    },
+    eventOne(evt, row){ // возврат по полю pin
+      console.log('row', row);
     }
   },
   created() {
@@ -53,3 +63,6 @@ export default {
   }
 }
 </script>
+<style scoped="scoped">
+
+</style>
