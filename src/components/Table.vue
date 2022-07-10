@@ -24,16 +24,21 @@
         @row-click="eventOne"
     />
   </div>
+
+  <DialogMenu/>
 </template>
 
 <script>
 import Toolbar from '@/components/Toolbar'
 import axios from 'axios'
 import config from '../../config.json'
+import DialogMenu from '@/components/DialogMenu'
+
 export default {
   name: 'TableComponent',
   components: {
-    Toolbar
+    Toolbar,
+    DialogMenu
   },
   data () {
     return {
@@ -57,8 +62,8 @@ export default {
       }
     },
     eventOne(evt, row){ // возврат по полю pin
-      console.log('row', row);
-    }
+      console.log('row', row.pin);
+    },
   },
   created() {
     this.getAllStarWarsPeople();
