@@ -1,14 +1,18 @@
 <template>
     <q-toolbar class="bg-secondary text-white shadow-2">
-      <p class="text-h5">Verigram</p>
+      <p class="text-h5 cursor" @click="$router.push('/')">Verigram</p>
       <q-space />
       <q-tabs >
-        <router-link to="/" class="customers">
-            <q-tab label="Клиенты" />
-        </router-link>
-        <router-link to="/logs" class="customers">
-            <q-tab  label="Журнал" />
-        </router-link>
+            <q-tab
+                class="customers"
+                label="Клиенты"
+                @click="$router.push('/')"
+            />
+            <q-tab
+                class="customers"
+                label="Журнал"
+                @click="$router.push('/logs')"
+            />
       </q-tabs>
     </q-toolbar>
 
@@ -18,8 +22,7 @@
 export default {
   name: 'ToolbarComponent',
   components: {},
-  methods:{
-  },
+  methods:{},
   mounted (){}
 }
 </script>
@@ -27,6 +30,9 @@ export default {
 .customers{
   text-decoration: none;
   color: yellow;
+}
+.cursor:hover{
+  cursor: default;
 }
 
 </style>

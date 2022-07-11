@@ -1,59 +1,48 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Full Width" color="primary" @click="fullWidth = true" />
-    <q-dialog v-model="fullWidth" full-width>
+  <Toolbar/>
+  <div class="text-h5"> Журнал пользователя: </div>
 
-      <q-card>
+<!--  <div style="display: flex" v-for="customer in customer">         перебор данных пользователя-->
+<!--    <div class="text-h6"> {{customer.name }} </div>-->
+<!--  </div>-->
 
-        <q-card-section>
-          <div class="text-h6">Full Width</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none" >
-          <div class="q-pa-md">
-            <q-table
-                v-for="customer in [customers]"
-                :key="customer"
-                :rows="customer"
-                row-key="name"
-            />
-          </div>
-        </q-card-section>
-
-        <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="Закрыть" v-close-popup />
-        </q-card-actions>
-
-      </q-card>
-
-    </q-dialog>
-  </div>
+  <q-card-section class="q-pt-none" >
+    <div class="q-pa-md">
+      <q-table
+          v-for="customer in customers"
+          :key="customer"
+          :rows="customer"
+          row-key="name"
+      />
+    </div>
+  </q-card-section>
 </template>
 
 <script>
-import { ref } from 'vue'
+import Toolbar from '@/components/Toolbar'
 import axios from 'axios'
 import config from '../../config.json'
 export default {
   name: 'dialog-menu',
+  components: {
+    Toolbar,
+  },
   data() {
     return {
       customers: [],
+      customer: []
     }
   },
   methods: {
     async getAllStarWarsPeople () {
-      const res = await axios.get(config.api.customers)
-      this.customers = res.data
+      const res = await axios.get("http://localhost:3000/customers")
+      this.customers = [res.data]
+      this.customer = res.data
     }
   },
   created() {
-    this.getAllStarWarsPeople();
-  },
-  setup () {
-    return {
-      fullWidth: ref(false),
-    }
+    this.getAllStarWarsPeople()
+    console.log('this.store.state.id===', this.$store.getters.getOne)// возврощает id клиента
   }
 }
 </script>

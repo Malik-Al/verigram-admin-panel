@@ -16,34 +16,32 @@
   <br />
 
   <div class="q-pa-md">
-    <q-table
-        v-for="customer in [customers]"
-        :key="customer"
-        :rows="customer"
-        row-key="name"
-        @row-click="eventOne"
-    />
+      <q-table
+          v-for="customer in [customers]"
+          :key="customer"
+          :rows="customer"
+          row-key="name"
+          @row-click="eventOne"
+      />
   </div>
-
-  <DialogMenu/>
 </template>
 
 <script>
 import Toolbar from '@/components/Toolbar'
 import axios from 'axios'
 import config from '../../config.json'
-import DialogMenu from '@/components/DialogMenu'
+
 
 export default {
   name: 'TableComponent',
   components: {
-    Toolbar,
-    DialogMenu
+    Toolbar
   },
   data () {
     return {
       customers: [],
-      search: ""
+      search: "",
+      id: ''
     }
   },
   methods: {
@@ -61,8 +59,9 @@ export default {
         this.customers = res.data;
       }
     },
-    eventOne(evt, row){ // возврат по полю pin
-      console.log('row', row.pin);
+    eventOne(evt, row){
+      this.$store.commit('getId', row.customer_id)
+      this.$router.push('/dialog')
     },
   },
   created() {

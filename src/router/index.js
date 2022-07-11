@@ -11,6 +11,11 @@ const routes = [
     path: '/logs',
     name: 'log',
     component: () => import('../components/Logs')
+  },
+  {
+    path: '/dialog',
+    name: 'dialog',
+    component: () => import('../components/DialogMenu')
   }
 ]
 
